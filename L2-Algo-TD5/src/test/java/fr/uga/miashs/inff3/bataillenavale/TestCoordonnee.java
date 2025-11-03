@@ -113,7 +113,7 @@ public class TestCoordonnee {
          * A5 B5 C5
          */
 
-        // test des comapreTo avec les quatres voisines
+        // test des compareTo avec les quatres voisines
         assertTrue(b4.compareTo(new Coordonnee("B3"))>0 );
         assertTrue(b4.compareTo(new Coordonnee("B5"))<0);
         assertTrue(b4.compareTo(new Coordonnee("A4"))>0);

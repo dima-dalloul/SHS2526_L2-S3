@@ -12,8 +12,8 @@ public class Coordonnee {
      *  		à 0 et l’attribut colonne à 2.
      */
     // -------------------- Attributs --------------------//
-    private int ligne = 0;		// le chiffre qui va être donné
     private int colonne = 0; 	// la différence entre la lettre donnée et la lettre A
+    private int ligne = 0;		// le chiffre qui va être donné
 
     // -------------------- Constructeurs --------------------//
     /*
@@ -114,25 +114,87 @@ public class Coordonnee {
      *  ne sont pas voisines).
      */
     /**
-     * Tester si la coordonnée donnée en paramètre est voisine de la coordonnée actuelle
+     *
      * Elles sont voisines si elles sont sur la même ligne et/ou sur la même colonne
      * (les coordonnées diagonalles ne sont pas considérées comme voisines)
      * @param c coordonnée à tester
      * @return vrai si elle est voisine avec la coordonnée actuelle
      */
+    /**
+     * Tester si la coordonnée donnée en paramètre est voisine de la coordonnée actuelle
+     * @param c Coordonnee  à tester si voisine
+     * @return vrai si elles sont voisines, faux sinon
+     */
     public boolean voisine(Coordonnee c) {
+        // V1 - version longue
+        // Par défaut, on met à faux
+        boolean resultat = false;
 
-        return true;
+        // Je teste si elles sont voisines sur la même colonne
+        if ((this.colonne == c.colonne) && (this.ligne == c.ligne - 1)){
+            resultat = true;
+        } else if ((this.colonne == c.colonne) && (this.ligne == c.ligne + 1)){
+            resultat = true;
+        }
+        // Je teste si elles sont voisines sur la même ligne
+        else if ((this.colonne == c.colonne - 1 ) && (this.ligne == c.ligne)) {
+            resultat = true;
+        } else if ((this.colonne == c.colonne + 1 ) && (this.ligne == c.ligne)) {
+            resultat = true;
+        }
+
+        // Je renvoie le résultat
+        return resultat;
+
+        /*
+        // V2 - version compacte
+        return (
+                ((this.colonne == c.colonne) && (this.ligne == c.ligne - 1))  ||
+                ((this.colonne == c.colonne) && (this.ligne == c.ligne + 1)) ||
+                ((this.colonne == c.colonne - 1 ) && (this.ligne == c.ligne)) ||
+                ((this.colonne == c.colonne + 1 ) && (this.ligne == c.ligne))
+        );
+        */
     }
 
     /**
-     *
-     * @param c
-     * @return
+     * Méthode pour comparer deux coordonnées.
+     * Une coordonnée est plus petite qu’une autre si elle est
+     * placée avant dans le sens de la lecture (gauche à droite, haut en bas).
+     * Cette méthode retourne un nombre négatif si la coordonnée courante est plus petite que o,
+     * 0 si elles sont égales,
+     * un nombre positif si elle est plus grande que o.
+     * @param c Coordonnée à tester
+     * @return entier 0 ou nombre négatif ou nombre positif
      */
     public int compareTo(Coordonnee c) {
-        // A modifier
-        return 0;
+        // On compare selon la ligne
+
+        // On gère le cas des lignes inférieures
+        if(this.ligne > c.ligne){
+            // Cas C3 et A1
+            return (this.ligne - c.ligne);
+        }
+        // On compare l'égalité des lignes
+        else if (this.ligne == c.ligne){
+            // On compare les colonnes
+            if (this.colonne > c.colonne){
+                // Cas C3 et A3
+                return (this.colonne - c.colonne);
+            } else if(this.colonne == c.colonne){
+                // Cas C3 et C3
+                return 0;
+            } else {
+                // Cas C3 et E3
+                return (this.colonne - c.colonne);
+            }
+        }
+        // On gère le cas des lignes supérieures
+        else {
+            // Cas C3 et D9
+            // Cas E1 et A2
+            return (this.ligne - c.ligne);
+        }
     }
 
     /**
