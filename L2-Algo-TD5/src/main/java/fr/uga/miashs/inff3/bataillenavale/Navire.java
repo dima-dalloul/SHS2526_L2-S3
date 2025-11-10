@@ -123,6 +123,7 @@ public class Navire {
      * @return true ssi le navire actuel touche le navire passé en paramètre
      */
     public boolean touche(Navire n){
+        /*
         // V1
         return (
                     // La ligne de fin d'un des navires touche la ligne de début de l'autre
@@ -139,10 +140,24 @@ public class Navire {
                     // ET ils partagent au moins une ligne au commun
                     (debut.getLigne()<=n.getFin().getLigne() && n.getDebut().getLigne()<= fin.getLigne())
                 );
+         */
 
         // V2 : Merci Roxanne - s'appuie sur Voisines pour tester si les navires se touchent.
         // (n.getDebut().voisine(this.debut)) || (n.getDebut().voisine(this.fin))
         // || (n.getFin().voisine(this.debut)) || (n.getFin().voisine(this.fin));
+
+        // V3 : Version avec intersectionNonVide
+        return (
+                (intersectionNonVide(this.debut.getColonne(), this.fin.getColonne(), n.debut.getColonne(), n.fin.getColonne()))
+                &&
+                (Math.abs(this.debut.getLigne() - n.fin.getLigne()) == 1 || Math.abs(this.fin.getLigne() - n.debut.getLigne()) == 1)
+               )
+               ||
+               (
+                (intersectionNonVide(this.debut.getLigne(), this.fin.getLigne(), n.debut.getLigne(), n.fin.getLigne()))
+                &&
+                (Math.abs(this.debut.getColonne() - n.fin.getColonne()) == 1 || Math.abs(this.fin.getColonne() - n.debut.getColonne()) == 1)
+               );
     }
 
     /**
