@@ -1,3 +1,5 @@
+package exo1;
+
 import java.util.Arrays;
 
 public abstract class ListManagement {
@@ -42,7 +44,7 @@ public abstract class ListManagement {
 
 /**
  * Ces codes ont de nombreuses ressemblances. Il serait donc judicieux de factoriser un peu cela.
- * Proposez une solution avec une classe abstraite dont hériteront ListSum et ListProduct.
+ * Proposez une solution avec une classe abstraite dont hériteront exo1.ListSum et exo1.ListProduct.
  * Astuce pour factoriser au maximum : On peut isoler dans des méthodes abstraites l’initialisation du résultat
  * par l’élément neutre de l’opérateur et l’opération en elle même.
  */

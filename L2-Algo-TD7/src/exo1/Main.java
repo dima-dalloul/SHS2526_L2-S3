@@ -1,3 +1,5 @@
+package exo1;
+
 public class Main {
     public static void main(String[] args){
         ListSum listSum = new ListSum();
